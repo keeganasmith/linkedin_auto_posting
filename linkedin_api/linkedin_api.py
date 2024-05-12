@@ -3,11 +3,15 @@ from selenium.webdriver.common.by import By
 import os
 from dotenv import load_dotenv
 import time
+from selenium.webdriver.chrome.options import Options
+
 load_dotenv()
 USERNAME = os.getenv('USERNAME')
 PASSWORD = os.getenv('PASSWORD')
 class Linkedin:
     def __init__(self):
+        # chrome_options = Options()
+        # chrome_options.add_argument("--headless")
         self.driver = webdriver.Chrome()
         self.driver.implicitly_wait(10000)
         self.login()
@@ -23,7 +27,7 @@ class Linkedin:
         password_element.submit()
     def make_post(self, message):
         
-        start_post_button = self.driver.find_element(By.ID, "ember29")
+        start_post_button = self.driver.find_element(By.CSS_SELECTOR, "button.share-box-feed-entry__trigger")
         start_post_button.click()
         text_field = self.driver.find_element(By.CSS_SELECTOR, ".ql-editor[data-placeholder='What do you want to talk about?']")
         text_field.send_keys(message)
@@ -31,5 +35,5 @@ class Linkedin:
         buttons = self.driver.find_elements(By.CSS_SELECTOR, "button.share-actions__primary-action")
         submit_button = buttons[0]        
         submit_button.click()
-linkedin_instance = Linkedin()
-linkedin_instance.make_post("hello world!")
+# linkedin_instance = Linkedin()
+# linkedin_instance.make_post("wazzup")

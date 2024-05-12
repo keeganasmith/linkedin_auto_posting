@@ -1,0 +1,1 @@
+This is a work in progress. The goal is to produce a script which creates a linkedin post of moderate quality every day. \
